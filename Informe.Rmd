@@ -261,7 +261,7 @@ Bt = epsilon * est.t.c
 ```
 
 
-De manera que para poder emplear esta ecuación es necesario comenzar encontrando el límite en el error de estimación, que, considerando que este está dado por $B_{\tau} = \epsilon \times \hat{\tau}}$, de manera que se obtiene que $B_{\tau} = `r round(Bt, 4)`$. Luego, realizando las cuentas indicadas por las dos ecuaciones anteriores se tiene que:
+De manera que para poder emplear esta ecuación es necesario comenzar encontrando el límite en el error de estimación, que, considerando que este está dado por $B_{\tau} = \epsilon \times \hat{\tau}_c$, de manera que se obtiene que $B_{\tau} = `r round(Bt, 4)`$. Luego, realizando las cuentas indicadas por las dos ecuaciones anteriores se tiene que:
 
 ```{r}
 D = (Bt / (z * N))^2
@@ -270,4 +270,4 @@ n.t = (N * sum(paso2))/(N*D + sum(paso2))
 
 $$D = `r round(D, 4)`, \ \ \ \ n_{\tau} \approx `r round(n.t, 4)` $$
 
-Y como se ve el resultado es el mismo que para el tamaño de la muestra de la media poblacional, es decir, que se deben muestrear un total de `r ceiling(n.t, 4)` conglomerados.
+Y como se ve el resultado es el mismo que para el tamaño de la muestra de la media poblacional, es decir, que se deben muestrear un total de `r ceiling(n.t)` conglomerados.
