@@ -1,0 +1,52 @@
+---
+title: "Puntos 7 y 8"
+author: "Deivid Zhang Figueroa"
+date: "22/1/2022"
+output: pdf_document
+---
+
+```{r}
+load("Datos.RData")
+```
+
+
+**7.** Teniendo en cuenta los resultados anteriores realice una prueba de suma de cuadrados extra con test lineal general. Justifique la hipótesis que desea probar en este numeral.
+
+**RTA:** Como se vio anteriormente, las ecuaciones de las rectas ajustadas para "otro" y para "sedán" dieron valores similares en sus interceptos y pendientes, por lo que, se hará una prueba para ver si estos son estadísticamente iguales, esto es:
+
+$$\beta_0 = \beta_0 + \beta_3 \Longrightleftarrow \beta_3 = 0$$ y
+$$\beta_1 = \beta_1 + \beta_{1,2} \Longrightleftarrow \beta_{1,2} = 0$$
+Por lo tanto, la hipótesis nula y alterna es:
+
+$$H_0: \beta_3 = \beta_{1,2} = 0$$ vs
+$H_a:$ al menos uno de estos parámetros es no nulo: $\beta_3,\beta_{1,2}$
+
+Haciendo test lineal general:
+
+```{r}
+linearHypothesis(modelo,c("bodyStylesedan=0",
+"cityMpg:bodyStylesedan=0"))
+```
+
+Luego, se tiene que el valor p es $0.3899 < \alpha = 0.05$, por lo que no se rechaza la hipótesis nula, es decir, las rectas para "otro" y para "sedán" son estadísticamente iguales.
+
+**8.** Si se quiere probar que la recta de price vs $X_1$ es diferente para cada niveles de bodyStyle, plantee la hipótesis a probar, el estadístico de prueba y región crítica al nivel de 0.05, realice la prueba y concluya.
+
+**RTA:** las rectas serán iguales si coinciden sus interceptos y sus pendientes, por lo tanto se requiere que: 
+$$\beta_0 +\beta_2 = \beta_0 + \beta_3 = \beta_0 \Longleftrightarrow \beta_2 = \beta_3 = 0$$, y
+$$\beta_1 + \beta_{1,1} = \beta_1 + \beta_{1,2} = \beta_1 \Longleftrightarrow \beta_{1,1} = \beta_{1,2} = 0$$
+
+Luego, se debe probar:
+
+$$H_0: \beta_2 = \beta_3 = \beta_{1,1} = \beta_{1,2} = 0$$ vs
+$H_a:$ al menos uno de estos parámetros es no nulo: $\beta_2,\beta_3,\beta_{1,1},\beta_{1,2}$
+
+El estadístico de prueba es:
+$$F_0 = \frac{(SSE(MR) - SSE(MF))/\nu}{MSE(MF)}$$
+
+Con la función linearHypothesis se puede hallar estos valores:
+```{r}
+linearHypothesis(modelo,c("bodyStylehatchback=0","bodyStylesedan=0","cityMpg:bodyStylehatchback=0",
+"cityMpg:bodyStylesedan=0"))
+```
+Por lo tanto, según la tabla anterior, el estadístico de prueba $F_0 = \frac{1305775049/4}{30988667} = 9.9022$, y calculando su valor p se tiene que es 9.929e-07 < $\alpha = 0.05$, por lo que se rechaza la hipótesis nula $H_0: \beta_2 = \beta_3 = \beta_{1,1} = \beta_{1,2} = 0$, es decir, la recta de price vs $X_1$ es diferente para cada niveles de bodyStyle.
