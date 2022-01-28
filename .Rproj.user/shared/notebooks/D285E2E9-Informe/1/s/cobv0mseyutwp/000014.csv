@@ -1,0 +1,2 @@
+"0","cong.muestreo = conglomerados[which(indices %in% muestra),]"
+"0","write.csv(cong.muestreo, file = './muestreo.csv')"

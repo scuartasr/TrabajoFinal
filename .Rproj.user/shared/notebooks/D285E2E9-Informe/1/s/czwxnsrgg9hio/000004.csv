@@ -1,0 +1,4 @@
+"0","n.ep = 20"
+"0","totales.cong = as.vector(resumen[, 3])"
+"0","paso1 = (totales.cong - est.m.c)^2"
+"0","paso2 = paso1 / (n.ep - 1)"

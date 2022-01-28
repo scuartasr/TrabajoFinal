@@ -1,0 +1,2 @@
+"0","datos <- read.csv(""Datos.csv"", encoding = ""UTF-8"")"
+"0","datos = na.omit(datos)"

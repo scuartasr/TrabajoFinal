@@ -1,0 +1,2 @@
+"0","resumen = merge(comen.c, peyor.c, by = ""Conglomerado"")"
+"0","resumen = merge(resumen, anon.c, by = ""Conglomerado"")"

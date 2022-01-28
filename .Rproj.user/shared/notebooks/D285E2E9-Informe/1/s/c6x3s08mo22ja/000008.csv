@@ -1,0 +1,4 @@
+"0","options(scipen=999)"
+"0","N = 153"
+"0","Mo = M * N"
+"0","est.t.c = N * est.m.c"
