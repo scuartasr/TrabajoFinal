@@ -17,7 +17,7 @@ library(readxl)
 
 
 ```{r}
-read.csv("muestreo.csv")
-read_xlsx("Datos.xlsx")
+read.csv("Resultados.csv")
+read_xlsx("Resultados.xlsx")
 ```
 
