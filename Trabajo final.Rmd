@@ -18,6 +18,6 @@ library(readxl)
 
 ```{r}
 read.csv("Resultados.csv")
-read_xlsx("Resultados.xlsx")
+datos = read_xlsx("Resultados.xlsx")
 ```
 
