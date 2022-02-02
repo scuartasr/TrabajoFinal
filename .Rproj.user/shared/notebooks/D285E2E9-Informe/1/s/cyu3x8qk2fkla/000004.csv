@@ -1,3 +1,0 @@
-"0","datos = datos %>% "
-"0","  mutate(Fecha = as.Date(Fecha, format = ""%d/%m/%Y"")) %>% "
-"0","  rename(Encuestador = X.U.FEFF.Encuestador)"

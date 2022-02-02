@@ -17,6 +17,7 @@ knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 library(gridExtra)
 library(knitr)
+library(readxl)
 ```
 
 
@@ -32,11 +33,10 @@ Es por ello que nos motivamos a estudiar la cantidad total de comentarios con ad
 
 * **Total** de comentarios peyorativos en la sección de comentarios de las publicaciones de Instagram del medio de comunicación Noticias Uno de Colombia.
 * **Promedio** de comentarios que se consideran negativos en la sección de comentarios de las publicaciones de Instagram del medio de comunicación Noticias Uno de Colombia. 
-* **Proporción** de comentarios agresivos en la sección de comentarios de las publicaciones de Instagram del medio de comunicación Noticias Uno de Colombia.
 
 # Aspectos importantes
 
-* **Elemento.** Se considera como elemento a cada uno de los comentarios en las publicaciones de Instagram realizadas por el medio de comunicación radial Noticias Uno de Colombia. ``¿NO SERÍAN LAS PUBLICACIONES?`
+* **Elemento.** Se considera como elemento a cada uno de los comentarios en las publicaciones de Instagram realizadas por el medio de comunicación radial Noticias Uno de Colombia.
 
 * **Población.** La población está dada por la totalidad de comentarios realizados en las publicaciones de Instagram realizadas por el medio de comunicación radial Noticias Uno de Colombia.
 
@@ -165,7 +165,7 @@ congs = nrow(resumen)
 est.m.c = suma.pey.c / congs
 ```
 
-$$\hat{\mu}_c = \frac{4 + 16 + \ \ldots \ + 7 + 10}{`r nrow(resumen)`} = \frac{`r suma.pey.c`}{`r nrow(resumen)`} = `r round(suma.pey.c/nrow(resumen), 4)`$$
+$$\hat{\mu}_c = \frac{4 + 16 + \ \ldots \ + 7 + 10}{`r nrow(resumen)`} = \frac{`r suma.pey.c`}{`r nrow(resumen)`} = `r round(suma.pey.c/nrow(resumen), 4)`$$mo
 
 Lo que quiere decir que en cada conglomerado hay un promedio de `r round(est.m.c, 2)` comentarios peyorativos. Y con esto se puede estimar la cantidad promedio de comentarios peyorativos por unidad elemental como sigue:
 
@@ -271,3 +271,90 @@ n.t = (N * sum(paso2))/(N*D + sum(paso2))
 $$D = `r round(D, 4)`, \ \ \ \ n_{\tau} \approx `r round(n.t, 4)` $$
 
 Y como se ve el resultado es el mismo que para el tamaño de la muestra de la media poblacional, es decir, que se deben muestrear un total de `r ceiling(n.t)` conglomerados.
+
+##  Tabla resumen de los datos obtenidos en la encuesta.
+Presentar una Tabla resumen de los datos obtenidos en la encuesta: Por cada variable en la encuesta, ya sea promedios o porcentajes, y si es del caso, histrogramas o gráficos de barras. Presentar los comentarios respectivos.
+
+```{r base de datos}
+data<-read_xlsx("Resultados.xlsx")
+```
+### Variable comentarios.
+
+Esta variable contiene el números total de comentarios para cada publicación muestreada, unos estadisticos de resumen son los siguientes:
+
+\begin{table}[]
+\caption{}
+\label{tab:my-table}
+\begin{tabular}{|cc|}
+\hline
+\multicolumn{2}{|c|}{Número de comentarios por publicación} \\ \hline
+\multicolumn{1}{|c|}{Minimo}                    & 0         \\ \hline
+\multicolumn{1}{|c|}{Primer Cuantil (Q1)}       & 1         \\ \hline
+\multicolumn{1}{|c|}{Mediana}                   & 2         \\ \hline
+\multicolumn{1}{|c|}{Tercer cuantil (Q3)}       & 12        \\ \hline
+\multicolumn{1}{|c|}{Máximo}                    & 1052      \\ \hline
+\multicolumn{1}{|c|}{Moda}                      & 0         \\ \hline
+\end{tabular}
+\end{table}
+
+
+```{r echo = FALSE}
+#summary(data[,5])
+sd(as.vector(t(data[,5])))
+hist(as.vector(t(data[,5])), main= "Histograma de comentarios",xlab="Número de comentarios por publicación",ylab="Frecuencia", col="red")
+
+```
+vemos el dato que numero que mas se repite es cero con una frecuencia de 301 además como se puede ver en el gráfico de barra el número de comentarios varia mucho, y es evidente que un número de comentarios mas pequeño es lo más frecuente para una publicación.
+
+### Variable peyorativos.
+
+Esta variable contiene el número de comentarios peyorativos de cada publicación; a continuación una tabla con estadisticos de resumen y el respectivo diagrama de barras
+
+\begin{table}[htb]
+\begin{tabular}{|cc|}
+\hline
+\multicolumn{2}{|c|}{Número de comentarios peyorativos por publicación} \\ \hline
+\multicolumn{1}{|c|}{Minimo}                          & 0               \\ \hline
+\multicolumn{1}{|c|}{Primer Cuantil (Q1)}             & 0               \\ \hline
+\multicolumn{1}{|c|}{Mediana}                         & 0               \\ \hline
+\multicolumn{1}{|c|}{Tercer cuantil (Q3)}             & 1               \\ \hline
+\multicolumn{1}{|c|}{Máximo}                          & 363             \\ \hline
+\multicolumn{1}{|c|}{Moda}                            & 0               \\ \hline
+\end{tabular}
+\end{table}
+
+```{r}
+#summary(data[,6])
+hist(as.vector(t(data[,6])),main= "Histograma de comentarios peyorativos",xlab="Número de comentarios peyorativos por publicación",ylab="Frecuencia", col="red")
+```
+
+vemos el dato que numero que mas se repite es cero con una frecuencia de 841,  Nuevamente se observa que los valores que puede alcanzar esta variable varia bastante y que aun sigue siendo mas frecuente un numero más pequeño de comentarios peyorativos, lo que cambia esta vez es que la frecuencia de estos comentarios es mucho menos en comparación con la frecuencia de comentarios totales.
+
+### Variable anonimos.
+
+\begin{table}[htb]
+\begin{tabular}{|cc|}
+\hline
+\multicolumn{2}{|c|}{Número de comentarios anonimos por publicación} \\ \hline
+\multicolumn{1}{|c|}{Minimo}                          & 0               \\ \hline
+\multicolumn{1}{|c|}{Primer Cuantil (Q1)}             & 0               \\ \hline
+\multicolumn{1}{|c|}{Mediana}                         & 0               \\ \hline
+\multicolumn{1}{|c|}{Tercer cuantil (Q3)}             & 0               \\ \hline
+\multicolumn{1}{|c|}{Máximo}                          & 102             \\ \hline
+\multicolumn{1}{|c|}{Moda}                            & 0               \\ \hline
+\end{tabular}
+\end{table}
+
+```{r}
+summary(data[,7])
+hist(as.vector(t(data[,7])),main= "Histograma de comentarios anononimos",xlab="Número de comentarios anonimos por publicación",ylab="Frecuencia", col="red")
+
+```
+
+Es evidente que el número de comentarios para esta variable se reduce en gran medida, y por lo que nos muestra los estadisticos de resumen parece ser que no suele haber comentarios realizados por cuentas anonimas.
+
+
+```{r}
+```
+
+
