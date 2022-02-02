@@ -1,5 +1,0 @@
-"0","set.seed(1037670103)"
-"0","num.congl = seq(1, 153)"
-"0","muestra = sort(sample(num.congl,"
-"0","       size = 20,"
-"0","       replace = FALSE))"

@@ -1,3 +1,0 @@
-"0","suma.pey.c = sum(resumen[, 3])"
-"0","congs = nrow(resumen)"
-"0","est.m.c = suma.pey.c / congs"
