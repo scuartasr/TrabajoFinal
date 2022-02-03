@@ -434,7 +434,7 @@ Para el total estimado de comentarios peyorativos para los 153 conglomerados est
 
 $\hat{\tau}_{c} = 153*\hat{\mu}_{c} = 153*53.89773 = 8246.353$. Es decir, hay 8247 comentarios peyorativos en total.
 
-Teniendo estos valores, se halla los intervalos de confianza al 95% para los parámetros de interés $\mu$ y $\tau$.
+Teniendo estos valores, se halla los intervalos de confianza al 90% para los parámetros de interés $\mu$ y $\tau$.
 
 Primeramente, se halla la varianza estimada de $\hat{\tau}_c$ y $\hat{\mu}_c$, y con esta se hallará el error estándar estimado para estos estimadores:
 
@@ -461,37 +461,27 @@ error_estandar_mu_est
 El error estándar estimado de $\hat{\mu} = 0.3392856$.
 
 ```{r}
-cuantil_t = qt(0.025,n-1,lower.tail = F)
+cuantil_z = qnorm(0.05,lower.tail = F)
 # Intervalos de confianza para tau
-intervalo_tau = c(8246.353 - cuantil_t*error_estandar_tau_c_est, 8246.353 + cuantil_t*error_estandar_tau_c_est)
+intervalo_tau = c(8246.353 - cuantil_z*error_estandar_tau_c_est, 8246.353 + cuantil_z*error_estandar_tau_c_est)
 
-cat("Intervalo de confianza al 95% para tau: ",intervalo_tau, end="\n")
+cat("Intervalo de confianza al 90% para tau: ",intervalo_tau, end="\n")
 
 # Intervalos de confianza para mu
-intervalo_mu = c(media_estimada_peyorativo - cuantil_t*error_estandar_mu_est, media_estimada_peyorativo + cuantil_t*error_estandar_mu_est)
-cat("Intervalo de confianza al 95% para mu: ",intervalo_mu)
+intervalo_mu = c(media_estimada_peyorativo - cuantil_z*error_estandar_mu_est, media_estimada_peyorativo + cuantil_z*error_estandar_mu_est)
+cat("Intervalo de confianza al 90% para mu: ",intervalo_mu)
 ```
 
-Luego con un nivel de confianza de 95%, el número total $\tau$ de comentarios peyorativos que hay en las 2290 publicaciones se encuentra entre 6703 comentarios y 9791 comentarios, y la cantidad media $\mu$ de comentarios peyorativos por publicación se encuentra entre 3 comentarios y 5 comentarios.
+Luego con un nivel de confianza de 90%, el número total $\tau$ de comentarios peyorativos que hay en las 2290 publicaciones se encuentra entre 6969 comentarios y 9524 comentarios, y la cantidad media $\mu$ de comentarios peyorativos por publicación se encuentra entre 3 comentarios y 4 comentarios.
 
 
 Por último, se halla el B usando 88 conglomerados para comprobar si este mejoró.
 
-Primeramente, reemplazando los respectivos valores de la fórmula:
-
-$$n = \frac{n_0}{1 + \frac{n_0}{N}} = 88 = \frac{n_0}{1 + \frac{n_0}{153}} \Longrightarrow n_0 = \frac{13464}{65}$$
-Luego, despejando la fórmula siguiente:
-
-$$n_0 = \frac{z^2S_{con}^{2}}{B^2M^2}$$.
-
-se tiene que,
-
-$$B = \sqrt{\frac{z^2S_{con}^2}{n_0M^2}}$$
-Reemplazando los valores obtenidos se tiene que,
-
-$$B = \sqrt{\frac{1.96^2*5341.702}{\frac{13464}{65}*2290^2}}$$
-
-Luego, B = 0.0043464, y como podemos evidenciar esta disminuyó, lo que quiere decir que nuestro I.C es más preciso.
+```{r}
+cuantil_z*error_estandar_tau_c_est # B para total
+cuantil_z*error_estandar_mu_est # B para mu
+```
+Como se puede ver ambos B aumentaron.
 
 ## Conclusiones
 

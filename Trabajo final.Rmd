@@ -71,15 +71,15 @@ error_estandar_mu_est
 El $e.e[\hat{\mu}] = 0.3392856$.
 
 ```{r}
-cuantil_t = qt(0.025,n-1,lower.tail = F)
+cuantil_z = qnorm(0.05,lower.tail = F)
 # Intervalos de confianza para tau
-intervalo_tau = c(8246.353 - cuantil_t*error_estandar_tau_c_est, 8246.353 + cuantil_t*error_estandar_tau_c_est)
+intervalo_tau = c(8246.353 - cuantil_z*error_estandar_tau_c_est, 8246.353 + cuantil_z*error_estandar_tau_c_est)
 
-cat("Intervalo de confianza al 95% para tau: ",intervalo_tau, end="\n")
+cat("Intervalo de confianza al 90% para tau: ",intervalo_tau, end="\n")
 
 # Intervalos de confianza para mu
-intervalo_mu = c(media_estimada_peyorativo - cuantil_t*error_estandar_mu_est, media_estimada_peyorativo + cuantil_t*error_estandar_mu_est)
-cat("Intervalo de confianza al 95% para mu: ",intervalo_mu)
+intervalo_mu = c(media_estimada_peyorativo - cuantil_z*error_estandar_mu_est, media_estimada_peyorativo + cuantil_z*error_estandar_mu_est)
+cat("Intervalo de confianza al 90% para mu: ",intervalo_mu)
 ```
 
 Luego con un nivel de confianza de 95%, el número total $\tau$ de comentarios peyorativos que hay en las 2290 publicaciones se encuentra entre 6703 comentarios y 9791 comentarios, y la cantidad media $\mu$ de comentarios peyorativos por publicación se encuentra entre 3 comentarios y 5 comentarios.
