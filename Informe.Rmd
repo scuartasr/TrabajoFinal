@@ -21,10 +21,9 @@ library(readxl)
 library(ggplot2)
 ```
 
-
 # Motivación y contexto
 
-Durante la última década se ha visto un aumento vertiginoso en la cantidad de usuarios que tienen cuentas en las diferentes redes sociales disponibles en el mercado, permitiendo a las personas interactuar de nuevas maneras mediante estos espacios virtuales, en los cuales les resulta posible compartir momentos de sus vidas mediante fotografías o videos, así como encontrarse con otros usuarios para discutir puntos de vista sobre algún tema y  compartir noticias o contenidos de su interés.
+Durante la última década se ha visto un aumento vertiginoso en la cantidad de usuarios que tienen cuentas en las diferentes redes sociales disponibles en el mercado, permitiendo a las personas interactuar de nuevas maneras mediante estos espacios virtuales, en los cuales les resulta posible compartir momentos de sus vidas mediante fotografías o videos, así como encontrarse con otros usuarios para discutir puntos de vista sobre algún tema y compartir noticias o contenidos de su interés.
 
 No obstante, uno de los grandes problemas asociados a las redes sociales es la proliferación de agresiones y contenido de odio desde las más diversas fuentes, como lo pueden ser las noticias falsas, interacciones con usuarios con ideologías diferentes y comentarios a influencers (personas destacadas en las redes sociales) que no son de su agrado, entre otras.
 
@@ -32,18 +31,18 @@ Es por ello que nos motivamos a estudiar la cantidad total de comentarios con ad
 
 # Parámetros a estimar
 
-* **Total** de comentarios peyorativos en la sección de comentarios de las publicaciones de Instagram del medio de comunicación Noticias Uno de Colombia.
-* **Promedio** de comentarios que se consideran negativos en la sección de comentarios de las publicaciones de Instagram del medio de comunicación Noticias Uno de Colombia. 
+-   **Total** de comentarios peyorativos en la sección de comentarios de las publicaciones de Instagram del medio de comunicación Noticias Uno de Colombia.
+-   **Promedio** de comentarios que se consideran negativos en la sección de comentarios de las publicaciones de Instagram del medio de comunicación Noticias Uno de Colombia.
 
 # Aspectos importantes
 
-* **Elemento.** Se considera como elemento a cada uno de los comentarios en las publicaciones de Instagram realizadas por el medio de comunicación radial Noticias Uno de Colombia.
+-   **Elemento.** Se considera como elemento a cada uno de los comentarios en las publicaciones de Instagram realizadas por el medio de comunicación radial Noticias Uno de Colombia.
 
-* **Población.** La población está dada por la totalidad de comentarios realizados en las publicaciones de Instagram realizadas por el medio de comunicación radial Noticias Uno de Colombia.
+-   **Población.** La población está dada por la totalidad de comentarios realizados en las publicaciones de Instagram realizadas por el medio de comunicación radial Noticias Uno de Colombia.
 
-* **Unidad de muestreo.** Para lograr la estimación de los parámetros de interés, se realizará el estudio considerando como unidad de muestreo a cada uno de los comentarios de las publicaciones de Instagram realizadas por el medio de comunicación radial Noticias Uno de Colombia, que con corte a las 4:00 p.m. del viernes 10 de diciembre de 2021 totalizaron 2,290 publicaciones. Se debe tener en cuenta, además, que para poder listar todas estas publicaciones se usó XXXX, el cual es una extensión de Chrome que se encarga de enlistar de forma automática todas las publicaciones de cualquier página de Instagram junto su enlace y la fecha de publicación de cada publicación, además de asignarle un número, el cual usamos como denominación para una de las publicaciones. Luego, para cada publicación, se tiene que esta exhibe de forma pública el número de comentarios que hay en esta y luego se los enlista en orden de aparición.
+-   **Unidad de muestreo.** Para lograr la estimación de los parámetros de interés, se realizará el estudio considerando como unidad de muestreo a cada uno de los comentarios de las publicaciones de Instagram realizadas por el medio de comunicación radial Noticias Uno de Colombia, que con corte a las 4:00 p.m. del viernes 10 de diciembre de 2021 totalizaron 2,290 publicaciones. Se debe tener en cuenta, además, que para poder listar todas estas publicaciones se usó XXXX, el cual es una extensión de Chrome que se encarga de enlistar de forma automática todas las publicaciones de cualquier página de Instagram junto su enlace y la fecha de publicación de cada publicación, además de asignarle un número, el cual usamos como denominación para una de las publicaciones. Luego, para cada publicación, se tiene que esta exhibe de forma pública el número de comentarios que hay en esta y luego se los enlista en orden de aparición.
 
-* **Tipo de muestreo.** Para abordar este trabajo se va a emplear el **muestreo por conglomerados**, para lo cual se toman los índices o ID de cada uno de los elementos muestrales, esto es, las fotos publicadas en la página de Instagram de *Noticias Uno* y se les organiza aleatoriamente para proseguir con una agrupación en grupos de quince publicaciones para poder construir los conglomerados, que serán quince en total, y a continuación se seleccionan de forma aleatoria veinte conglomerados para poder proceder con el muestreo. Todo lo anterior se realiza con ayuda de $\color{blue}{\textsf{R}}$.
+-   **Tipo de muestreo.** Para abordar este trabajo se va a emplear el **muestreo por conglomerados**, para lo cual se toman los índices o ID de cada uno de los elementos muestrales, esto es, las fotos publicadas en la página de Instagram de *Noticias Uno* y se les organiza aleatoriamente para proseguir con una agrupación en grupos de quince publicaciones para poder construir los conglomerados, que serán quince en total, y a continuación se seleccionan de forma aleatoria veinte conglomerados para poder proceder con el muestreo. Todo lo anterior se realiza con ayuda de $\color{blue}{\textsf{R}}$.
 
 ```{r, include = FALSE}
 set.seed(20220126)
@@ -65,7 +64,7 @@ save(conglomerados, file = "Conglomerados.RData") # ¿Guardar como .csv?
 
 ## Levantamiento de la información.
 
-Para poder realizar el levantamiento de la información usando muestreo por conglomerados se apeló a una herramienta que se encarga de enumerar cada una de las publicaciones de la página de *Instagram* de *Noticias Uno*, incluyendo el enlace que dirige a cada publicación, la fecha en la que fue subida a la red social y un índice, dándole el primero a la publicación más reciente al momento de generar el listado, y el último a la primera publicación compartida por Noticias Uno en *Instagram*. De esta forma, teniendo en cuenta que se consideraron todas las aplicaciones que se publicaron hasta el sábado 11 de diciembre de 2021 a las 16:00 (4:00 p.m. GMT -5, es decir, hora de Bogotá), se tiene que el tamaño de la población, esto es, el número total de publicaciones en Instagram de Noticias Uno hasta dicha fecha es de 2,290 y se procede con la construcción de los conglomerados como se explicó antes
+Para poder realizar el levantamiento de la información usando muestreo por conglomerados se apeló a una herramienta llamada *DownAlbum*, que se encarga de enumerar cada una de las publicaciones de la página de *Instagram* de *Noticias Uno*, incluyendo el enlace que dirige a cada publicación, la fecha en la que fue subida a la red social y un índice, dándole el primer número a la publicación más reciente al momento de generar el listado, y el último a la primera publicación compartida por Noticias Uno en *Instagram* (la mas antigua). De esta forma, teniendo en cuenta que se consideraron todas las publicaciones que se hicieron hasta el sábado 11 de diciembre de 2021 a las 16:00 (4:00 p.m. GMT -5, es decir, hora de Bogotá), se tiene que el tamaño de la población, osea, el número total de publicaciones en Instagram de Noticias Uno hasta dicha fecha es de 2,290 y se procede con la construcción de los conglomerados como se explicó antes
 
 Con lo anterior presente, se generan con $\color{blue}{\textsf{R}}$ cuarenta números aleatorios para determinar cuáles van a ser los conglomerados a censar para recoger la información necesaria, los cuales se observan en la siguiente tabla
 
@@ -82,23 +81,22 @@ cong.muestreo = conglomerados[which(indices %in% muestra),]
 write.csv(cong.muestreo, file = './muestreo.csv')
 ```
 
-
 Para su levantamiento, entonces, cada uno de los cuatro integrantes asumió la recogida de datos de cinco conglomerados. Ahora bien, para el registro de los datos se creó un formulario de Microsoft Forums, el cual puede ser visto dando clic [aquí.](https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAANAATOOFRZUMTU3SUY3SDgzVkdCU01OMVJMRFZKUlI4Vi4u) A continuación se muestran y se justifican cada uno de los elementos de este formulario.
 
-* **Encuestador.** Registra cuál es la persona que está llenando la información.
-* **Enlace.** Dirección web de la publicación.
-* **ID.** Número de la publicación en el marco muestral.
-* **Conglomerado.** ID del conglomerado asociado a la publicación censada. 
-* **Fecha de publicación.** Fecha en la que fue subida la publicación a Instagram.
-* **Número de comentarios.** Cantidad total de comentarios.
-* **Número de comentarios con mensajes peyorativos.** Cantidad de comentarios en la publicación que tenían mensajes peyorativos, agresivos o violentos, entre otros.
-* **Tema.** Temática con la que se asocia la publicación. Para esta pregunta existen cuatro posibilidades:
-- Política nacional.
-- Deportes.
-- Entretenimiento.
-- Otros.
+-   **Encuestador.** Registra cuál es la persona que está llenando la información.
+-   **Enlace.** Dirección web de la publicación.
+-   **ID.** Número de la publicación en el marco muestral.
+-   **Conglomerado.** ID del conglomerado asociado a la publicación censada.
+-   **Fecha de publicación.** Fecha en la que fue subida la publicación a Instagram.
+-   **Número de comentarios.** Cantidad total de comentarios.
+-   **Número de comentarios con mensajes peyorativos.** Cantidad de comentarios en la publicación que tenían mensajes peyorativos, agresivos o violentos, entre otros.
+-   **Tema.** Temática con la que se asocia la publicación. Para esta pregunta existen cuatro posibilidades:
+-   Política nacional.
+-   Deportes.
+-   Entretenimiento.
+-   Otros.
 
-Y una vez recogidos los datos para las cuarenta publicaciones asignadas aleatoriamente por R, se genera automáticamente un cuadro en Excel con las respuestas, que puede ser visualizado haciendo clic aquí `XXXX`.
+Y una vez recogidos los datos para las cuarenta publicaciones asignadas aleatoriamente por R, se genera automáticamente un cuadro en Excel con las respuestas, que puede ser visualizado haciendo clic [aquí](https://docs.google.com/spreadsheets/d/1KbT9Zq7wox5J-FuIwY8pn1o6kalcjQJ0/edit?usp=sharing&ouid=105931996792244454347&rtpof=true&sd=true).
 
 ```{r}
 datos <- read.csv("Datos.csv", encoding = "UTF-8")
@@ -111,7 +109,22 @@ datos = datos %>%
   rename(Encuestador = X.U.FEFF.Encuestador)
 ```
 
+### Evidencia fotográfica
+
+![Recolección de publicaciones con la herramienta DownAlbum.](evidencias/evidencia0.png)
+
+![Herramienta usada para poder recopilar los datos facilmente (Office Forms).](evidencias/evidenciaencuesta.png)
+
+![Marco muestral, donde cada publicación representa un conglomerado de comentarios.](evidencias/evidencia2.png)
+
+![Asignación de las publicaciones y conglomerados a muestrear y progreso de este.](evidencias/evidencia1.png)
+
+![Progreso y evidencia de muestreo realizado por cada uno de los integrantes.](evidencias/evidencia3.png)
+
+![Resultados del muestreo, extraidos a formato EXCEL usando Office Forms.](evidencias/evidenciaresultados.png)
+
 ## Estudio piloto
+
 `Bla, bla, bla`
 
 Como se manifestó previamente, en este estudio se están considerando $N = `r nrow(conglomerados)`$, cada uno de $M = `r ncol(conglomerados)`$ unidades básicas. Así, se tiene que el número de unidades elementales en la población, es decir, el número publicaciones total a considerar es $M_0 = NM = `r nrow(conglomerados)*ncol(conglomerados)`$, que como se nota, son cinco unidades elementales más de las que realmente fueron consideras, esto porque se aleatorizaron los conglomerados con cinco unidades elementales imaginarias extras para poder asegurar que todos tuvieran tamaño uno. Ahora bien, para este estudio piloto se están considerando $n = 20$ conglomerados diferentes, seleccionados de manera aleatoria con ayuda de $\textsf{R}$, obteniendo que los que deben ser considerados son los siguientes:
@@ -120,14 +133,14 @@ Como se manifestó previamente, en este estudio se están considerando $N = `r n
 
 Con esto, se va a considerar a $\mu_c$ como la media de comentarios peyorativos por conglomerados, $\mu$ la media de comentarios peyorativos en toda la población, es decir, en todas las publicaciones de *Noticias Uno* consideradas hasta la fecha de corte y $\tau$ el total. Además, sea $y_{ij}$ el número de comentarios peyorativos registrados en la *i-ésimo* publicación del *j-ésimo* conglomerado. Se sabe que los parámetros anteriores pueden ser calculados como sigue:
 
+```{=tex}
 \begin{gather*}
 \tau = \sum_{i=1}^{N} \tau_i = \sum_{i} \sum_{j} y_{ij} \\
 \mu_c = \frac{\tau}{N} \\
 \mu = \frac{\tau}{NM} = \frac{\tau}{M_0}
 \end{gather*}
-
+```
 Así, vale la pena comenzar observando el resultado obtenido en cada uno de los conglomerados en la siguiente tabla:
-
 
 ```{r}
 comen.c = datos %>% 
@@ -175,9 +188,7 @@ M = 15
 est.m = est.m.c/M
 ```
 
-
-$$\hat{\mu} = \frac{\hat{\mu}_c}{M} = `r round(est.m, 4)`$$
-Es decir, existe un promedio de `r round(est.m, 2)` comentarios peyorativos, agresivos o irrespetuosos en cada publicación de *Instagram* de *Noticias Uno*. Además, el total de comentarios peyorativos puede ser estimado como sigue:
+$$\hat{\mu} = \frac{\hat{\mu}_c}{M} = `r round(est.m, 4)`$$ Es decir, existe un promedio de `r round(est.m, 2)` comentarios peyorativos, agresivos o irrespetuosos en cada publicación de *Instagram* de *Noticias Uno*. Además, el total de comentarios peyorativos puede ser estimado como sigue:
 
 ```{r}
 options(scipen=999)
@@ -186,18 +197,16 @@ Mo = M * N
 est.t.c = N * est.m.c
 ```
 
-
-
-$$\hat{\tau}_c = N \hat{\mu}_c = `r Mo` \times `r round(est.m.c, 4)` \approx `r round(est.t.c, 4)`$$
-De manera que se estima que se han dejado un total de `r round(est.t.c)` comentarios peyorativos en todas las publicaciones de *Instagram* de *Noticias Uno* que habían si subidas a la red social hasta el once de diciembre de 2021.
+$$\hat{\tau}_c = N \hat{\mu}_c = `r Mo` \times `r round(est.m.c, 4)` \approx `r round(est.t.c, 4)`$$ De manera que se estima que se han dejado un total de `r round(est.t.c)` comentarios peyorativos en todas las publicaciones de *Instagram* de *Noticias Uno* que habían si subidas a la red social hasta el once de diciembre de 2021.
 
 Ahora bien, con el objetivo de determinar cuál es el número de conglomerados que deben ser estudiados en el muestreo final, es necesario obtener la varianza estimada de los estimadores expuestos previamente, lo cual se consigue con las siguientes ecuaciones:
 
+```{=tex}
 \begin{gather*}
 \widehat{Var} [\hat{\tau}_c] = \frac{N(N-n)}{N} \sum_{i = 1}^{n} \frac{(\tau_i - \hat{\mu}_c)^2}{n-1} \\
 \widehat{Var} [\hat{\mu}] = \frac{1}{M_0^2} \widehat{Var} [\hat{\tau}_c]
 \end{gather*}
-
+```
 ```{r}
 # Total
 n.ep = 20
@@ -213,11 +222,12 @@ est.var.m = est.var.tc / (Mo^2)
 
 Y al realizar los respectivos cálculos se tiene que los estimadores de dichas varianzas son:
 
+```{=tex}
 \begin{gather*}
 \widehat{Var} [\hat{\tau}_c] = `r round(est.var.tc, 4)` \\\
 \widehat{Var} [\hat{\mu}] = `r round(est.var.m, 4)`
 \end{gather*}
-
+```
 Y con estos cálculos se tienen la mayoría de elementos necesarios para poder determinar el número de conglomerados que deben ser finalmente considerados.
 
 ### Tamaño de muestra para la media poblacional
@@ -237,13 +247,11 @@ epsilon = 0.15
 Bm = epsilon * est.m
 ```
 
-
 Para el cual, al realizar los cálculos con $\textsf{R}$, se obtiene que $S^2_{con} = `r round(sum(paso2), 4)`$. Además, considerando que se va a emplear un nivel de confianza del 90 % ($\alpha = 0.10$) (con lo que $Z_{0.05/2} = `r round(z, 4)`$) y un límite en el error de la estimación relativo del 10%, es decir, $\epsilon = 0.15$, de manera que el límite en el error de estimación $B_{\mu}$ es: $B_{\mu} = 0.10 \times `r round(est.m, 4)` = `r round(Bm, 4)`$. Así, se tiene que el número de conglomerados a muestrear si estos fuesen infinitos es:
 
 ```{r}
 n0.m = ((z^2) * sum(paso2))/((Bm * M))^2
 ```
-
 
 ```{r}
 n.m = n0.m / (1 + n0.m/N)
@@ -261,7 +269,6 @@ $$n = \frac{N S_{con}^2}{ND + S_{con}^2}, \ \ \ \ D = \frac{B_{\tau}^2}{Z_{\alph
 Bt = epsilon * est.t.c
 ```
 
-
 De manera que para poder emplear esta ecuación es necesario comenzar encontrando el límite en el error de estimación, que, considerando que este está dado por $B_{\tau} = \epsilon \times \hat{\tau}_c$, de manera que se obtiene que $B_{\tau} = `r round(Bt, 4)`$. Luego, realizando las cuentas indicadas por las dos ecuaciones anteriores se tiene que:
 
 ```{r}
@@ -273,15 +280,17 @@ $$D = `r round(D, 4)`, \ \ \ \ n_{\tau} \approx `r round(n.t, 4)` $$
 
 Y como se ve el resultado es el mismo que para el tamaño de la muestra de la media poblacional, es decir, que se deben muestrear un total de `r ceiling(n.t)` conglomerados.
 
-##  Tabla resumen de los datos obtenidos en la encuesta.
+## Tabla resumen de los datos obtenidos en la encuesta.
 
 ```{r base de datos}
 data<-read_xlsx("Resultados.xlsx")
 ```
+
 ### Variable comentarios.
 
 Esta variable contiene el números total de comentarios para cada publicación muestreada, unos estadísticos de resumen son los siguientes:
 
+```{=tex}
 \begin{table}[!htb]
 \begin{tabular}{|cc|}
 \hline
@@ -294,17 +303,17 @@ Esta variable contiene el números total de comentarios para cada publicación m
 \multicolumn{1}{|c|}{Moda}                      & 0         \\ \hline
 \end{tabular}
 \end{table}
-
-
+```
 ```{r echo = FALSE, warning=FALSE}
 #summary(data[,5])
 hist(as.vector(t(data[,5])), breaks= 25,main= "Histograma de comentarios",xlab="Número de comentarios por publicación",ylab="Frecuencia", col="red",xlim = c(0,1200))
 ```
-vemos que el número de comentarios que más se repite es cero con una frecuencia de 301, además como se puede ver en el gráfico de barra el número de comentarios varía mucho, y es evidente que un número de comentarios más pequeño es lo más frecuente para una publicación.
-### Variable peyorativos.
+
+vemos que el número de comentarios que más se repite es cero con una frecuencia de 301, además como se puede ver en el gráfico de barra el número de comentarios varía mucho, y es evidente que un número de comentarios más pequeño es lo más frecuente para una publicación. ##\# Variable peyorativos.
 
 Esta variable contiene el número de comentarios peyorativos de cada publicación; a continuación una tabla con estadísticos de resumen y el respectivo diagrama de barras
 
+```{=tex}
 \begin{table}[htb]
 \begin{tabular}{|cc|}
 \hline
@@ -317,15 +326,15 @@ Esta variable contiene el número de comentarios peyorativos de cada publicació
 \multicolumn{1}{|c|}{Moda}                            & 0               \\ \hline
 \end{tabular}
 \end{table}
-
+```
 ```{r}
 #summary(data[,6])
 hist(as.vector(t(data[,6])),breaks=30,main= "Histograma de comentarios peyorativos",xlab="Número de comentarios peyorativos por publicación",ylab="Frecuencia", col="blue",xlim=c(0,400))
 ```
 
-Sabemos que el numero que mas se repite es cero con una frecuencia de 841,  Nuevamente se observa que los valores que puede alcanzar esta variable varía bastante y que aún sigue siendo más frecuente un número más pequeño de comentarios peyorativos, lo que cambia esta vez es que la frecuencia de estos comentarios es mucho menos en comparación con la frecuencia de comentarios totales.
-### Variable anonimos.
+Sabemos que el numero que mas se repite es cero con una frecuencia de 841, Nuevamente se observa que los valores que puede alcanzar esta variable varía bastante y que aún sigue siendo más frecuente un número más pequeño de comentarios peyorativos, lo que cambia esta vez es que la frecuencia de estos comentarios es mucho menos en comparación con la frecuencia de comentarios totales. ##\# Variable anonimos.
 
+```{=tex}
 \begin{table}[htb]
 \begin{tabular}{|cc|}
 \hline
@@ -338,7 +347,7 @@ Sabemos que el numero que mas se repite es cero con una frecuencia de 841,  Nuev
 \multicolumn{1}{|c|}{Moda}                            & 0               \\ \hline
 \end{tabular}
 \end{table}
-
+```
 ```{r}
 #summary(data[,7])
 hist(as.vector(t(data[,7])),breaks= 6,main= "Histograma de comentarios anónimos",xlab="Número de comentarios anónimos por publicación",ylab="Frecuencia", col="orange",xlim=c(0,120))
@@ -385,5 +394,5 @@ ggplot(dat, aes(fill=Tipo_comentario, y=Número_de_comentarios, x=Tema_de_las_pu
     geom_bar(position="dodge", stat="identity")+theme(axis.text.x = element_text(angle = 90,vjust = 0.5, hjust=0.5))+ggtitle("Gráfico para la Variable Tema")+theme(plot.title = element_text(hjust = 0.5))
 
 ```
-En la anterior gráfica de barras se puede evidenciar que las publicaciones que están asociadas a política nacional son las que reciben más comentarios en general y comentarios peyorativos, le siguen las publicaciones relacionadas con otro tipo de temas, además resalta que las publicaciones relacionadas con deporte son las que menos comentarios reciben y parece ser que los comentarios peyorativos que contienen son mínimos.
 
+En la anterior gráfica de barras se puede evidenciar que las publicaciones que están asociadas a política nacional son las que reciben más comentarios en general y comentarios peyorativos, le siguen las publicaciones relacionadas con otro tipo de temas, además resalta que las publicaciones relacionadas con deporte son las que menos comentarios reciben y parece ser que los comentarios peyorativos que contienen son mínimos.
