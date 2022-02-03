@@ -18,6 +18,7 @@ library(tidyverse)
 library(gridExtra)
 library(knitr)
 library(readxl)
+library(ggplot2)
 ```
 
 
@@ -282,9 +283,7 @@ data<-read_xlsx("Resultados.xlsx")
 
 Esta variable contiene el números total de comentarios para cada publicación muestreada, unos estadisticos de resumen son los siguientes:
 
-\begin{table}[]
-\caption{}
-\label{tab:my-table}
+\begin{table}[!htb]
 \begin{tabular}{|cc|}
 \hline
 \multicolumn{2}{|c|}{Número de comentarios por publicación} \\ \hline
@@ -298,13 +297,11 @@ Esta variable contiene el números total de comentarios para cada publicación m
 \end{table}
 
 
-```{r echo = FALSE}
+```{r echo = FALSE, warning=FALSE}
 #summary(data[,5])
-sd(as.vector(t(data[,5])))
-hist(as.vector(t(data[,5])), main= "Histograma de comentarios",xlab="Número de comentarios por publicación",ylab="Frecuencia", col="red")
-
+hist(as.vector(t(data[,5])), breaks= 25,main= "Histograma de comentarios",xlab="Número de comentarios por publicación",ylab="Frecuencia", col="red",xlim = c(0,1200))
 ```
-vemos el dato que numero que mas se repite es cero con una frecuencia de 301 además como se puede ver en el gráfico de barra el número de comentarios varia mucho, y es evidente que un número de comentarios mas pequeño es lo más frecuente para una publicación.
+vemos que el número de comentarios que mas se repite es cero con una frecuencia de 301, además como se puede ver en el gráfico de barra el número de comentarios varia mucho, y es evidente que un número de comentarios mas pequeño es lo más frecuente para una publicación.
 
 ### Variable peyorativos.
 
@@ -325,7 +322,7 @@ Esta variable contiene el número de comentarios peyorativos de cada publicació
 
 ```{r}
 #summary(data[,6])
-hist(as.vector(t(data[,6])),main= "Histograma de comentarios peyorativos",xlab="Número de comentarios peyorativos por publicación",ylab="Frecuencia", col="red")
+hist(as.vector(t(data[,6])),breaks=30,main= "Histograma de comentarios peyorativos",xlab="Número de comentarios peyorativos por publicación",ylab="Frecuencia", col="blue",xlim=c(0,400))
 ```
 
 vemos el dato que numero que mas se repite es cero con una frecuencia de 841,  Nuevamente se observa que los valores que puede alcanzar esta variable varia bastante y que aun sigue siendo mas frecuente un numero más pequeño de comentarios peyorativos, lo que cambia esta vez es que la frecuencia de estos comentarios es mucho menos en comparación con la frecuencia de comentarios totales.
@@ -346,15 +343,50 @@ vemos el dato que numero que mas se repite es cero con una frecuencia de 841,  N
 \end{table}
 
 ```{r}
-summary(data[,7])
-hist(as.vector(t(data[,7])),main= "Histograma de comentarios anononimos",xlab="Número de comentarios anonimos por publicación",ylab="Frecuencia", col="red")
+#summary(data[,7])
+hist(as.vector(t(data[,7])),breaks= 6,main= "Histograma de comentarios anónimos",xlab="Número de comentarios anónimos por publicación",ylab="Frecuencia", col="orange",xlim=c(0,120))
 
 ```
 
 Es evidente que el número de comentarios para esta variable se reduce en gran medida, y por lo que nos muestra los estadisticos de resumen parece ser que no suele haber comentarios realizados por cuentas anonimas.
 
 
-```{r}
+```{r include = FALSE}
+#pol
+pol<-data[data[,8]=="Política nacional",]
+peyorpol<-sum(pol$Peyorativos)
+compol<-sum(pol$Comentarios)
+#otro
+otro<-data[data[,8]=="Otro",]
+peyorotro<-sum(otro$Peyorativos)
+comotro<-sum(otro$Comentarios)
+#Entrete
+ent<-data[data[,8]=="Entretenimiento",]
+peyorent<-sum(ent$Peyorativos)
+coment<-sum(ent$Comentarios)
+#polint
+polint<-data[data[,8]=="Política internacional",]
+peyorpolint<-sum(polint$Peyorativos)
+compolint<-sum(polint$Comentarios)
+#Deporte
+dep<-data[data[,8]=="Deportes",]
+peyordep<-sum(dep$Peyorativos)
+comdep<-sum(dep$Comentarios)
+#pub
+pub<-data[data[,8]=="Publicidad",]
+peyorpub<-sum(pub$Peyorativos)
+compub<-sum(pub$Comentarios)
+ 
+
 ```
 
+```{r }
+Tema_de_las_publicaciones<-c(rep("Política nacional",2),rep("Otro",2),rep("Publicidad",2),rep("Entretenimiento",2),rep("Política internacional",2),rep("Deportes",2))
+Tipo_comentario<-rep(c("Comentarios totales","Comentarios Peyorativos"),6)
+Número_de_comentarios<-c(compol,peyorpol,comotro,peyorotro,compub,peyorpub,coment,peyorent,compolint,peyorpolint,comdep,peyordep)
+dat<-data.frame(Tema_de_las_publicaciones,Tipo_comentario,Número_de_comentarios)
+ggplot(dat, aes(fill=Tipo_comentario, y=Número_de_comentarios, x=Tema_de_las_publicaciones)) + 
+    geom_bar(position="dodge", stat="identity")+theme(axis.text.x = element_text(angle = 90,vjust = 0.5, hjust=0.5))+ggtitle("Gráfico para la Variable Tema")+theme(plot.title = element_text(hjust = 0.5))
+
+```
 
