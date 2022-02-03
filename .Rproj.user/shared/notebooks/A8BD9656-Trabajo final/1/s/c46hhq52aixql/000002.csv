@@ -1,1 +1,0 @@
-"0","datos_1 <- datos %>% group_by(Conglomerado) %>% summarise(n=n(), ti = sum(Peyorativos), mui = sum(Peyorativos)/n())"
