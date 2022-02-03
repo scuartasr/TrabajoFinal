@@ -58,7 +58,7 @@ error_estandar_tau_c_est = sqrt(var_est_tau_c_est)
 error_estandar_tau_c_est # error estándar estimado
 ```
 
-El error estándar estimado de $\hat{\tau}_c = 776.964$.
+El $e.e[\hat{\tau}_c] = 776.964$.
 
 ```{r}
 # Para mu estimado
@@ -68,7 +68,7 @@ error_estandar_mu_est = sqrt(var_est_mu_con_est)
 error_estandar_mu_est
 ```
 
-El error estándar estimado de $\hat{\mu} = 0.3392856$.
+El $e.e[\hat{\mu}] = 0.3392856$.
 
 ```{r}
 cuantil_t = qt(0.025,n-1,lower.tail = F)
@@ -87,24 +87,8 @@ Luego con un nivel de confianza de 95%, el número total $\tau$ de comentarios p
 
 Por último, se halla el B usando 88 conglomerados para comprobar si este mejoró.
 
-Primeramente, reemplazando los respectivos valores de la fórmula:
-
-$$n = \frac{n_0}{1 + \frac{n_0}{N}} = 88 = \frac{n_0}{1 + \frac{n_0}{153}} \Longrightarrow n_0 = \frac{13464}{65}$$
-Luego, despejando la fórmula siguiente:
-
-$$n_0 = \frac{z^2S_{con}^{2}}{B^2M^2}$$.
-
-se tiene que,
-
-$$B = \sqrt{\frac{z^2S_{con}^2}{n_0M^2}}$$
-Reemplazando los valores obtenidos se tiene que,
-
-$$B = \sqrt{\frac{1.96^2*5341.702}{\frac{13464}{65}*2290^2}}$$
-
-Luego, B = 0.0043464, y como podemos evidenciar esta disminuyó, lo que quiere decir que nuestro I.C es más preciso.
-
-
-
-
-
-
+```{r}
+cuantil_t*error_estandar_tau_c_est # B para total
+cuantil_t*error_estandar_mu_est # B para mu
+```
+Veamos que, para ninguno de los dos parámetros de interés, presenta una mejora en el B.
