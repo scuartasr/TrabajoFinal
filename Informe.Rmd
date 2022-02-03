@@ -286,7 +286,7 @@ Y como se ve el resultado es el mismo que para el tamaño de la muestra de la me
 data<-read_xlsx("Resultados.xlsx")
 ```
 
-### Variable comentarios.
+### Variable *comentarios*.
 
 Esta variable contiene el números total de comentarios para cada publicación muestreada, unos estadísticos de resumen son los siguientes:
 
@@ -309,7 +309,9 @@ Esta variable contiene el números total de comentarios para cada publicación m
 hist(as.vector(t(data[,5])), breaks= 25,main= "Histograma de comentarios",xlab="Número de comentarios por publicación",ylab="Frecuencia", col="red",xlim = c(0,1200))
 ```
 
-vemos que el número de comentarios que más se repite es cero con una frecuencia de 301, además como se puede ver en el gráfico de barra el número de comentarios varía mucho, y es evidente que un número de comentarios más pequeño es lo más frecuente para una publicación. ##\# Variable peyorativos.
+vemos que el número de comentarios que más se repite es cero con una frecuencia de 301, además como se puede ver en el gráfico de barra el número de comentarios varía mucho, y es evidente que un número de comentarios más pequeño es lo más frecuente para una publicación.
+
+### Variable *peyorativos*.
 
 Esta variable contiene el número de comentarios peyorativos de cada publicación; a continuación una tabla con estadísticos de resumen y el respectivo diagrama de barras
 
@@ -332,7 +334,9 @@ Esta variable contiene el número de comentarios peyorativos de cada publicació
 hist(as.vector(t(data[,6])),breaks=30,main= "Histograma de comentarios peyorativos",xlab="Número de comentarios peyorativos por publicación",ylab="Frecuencia", col="blue",xlim=c(0,400))
 ```
 
-Sabemos que el numero que mas se repite es cero con una frecuencia de 841, Nuevamente se observa que los valores que puede alcanzar esta variable varía bastante y que aún sigue siendo más frecuente un número más pequeño de comentarios peyorativos, lo que cambia esta vez es que la frecuencia de estos comentarios es mucho menos en comparación con la frecuencia de comentarios totales. ##\# Variable anonimos.
+Sabemos que el numero que mas se repite es cero con una frecuencia de 841, Nuevamente se observa que los valores que puede alcanzar esta variable varía bastante y que aún sigue siendo más frecuente un número más pequeño de comentarios peyorativos, lo que cambia esta vez es que la frecuencia de estos comentarios es mucho menos en comparación con la frecuencia de comentarios totales.
+
+### Variable *anonimos*.
 
 ```{=tex}
 \begin{table}[htb]
@@ -356,7 +360,7 @@ hist(as.vector(t(data[,7])),breaks= 6,main= "Histograma de comentarios anónimos
 
 Es evidente que el número de comentarios para esta variable se reduce en gran medida, y por lo que nos muestra los estadísticos de resumen parece ser que no suele haber comentarios realizados por cuentas anónimas.
 
-### variable Tema.
+### Variable *Tema*.
 
 ```{r include = FALSE}
 #pol
