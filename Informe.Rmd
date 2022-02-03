@@ -385,5 +385,5 @@ ggplot(dat, aes(fill=Tipo_comentario, y=Número_de_comentarios, x=Tema_de_las_pu
     geom_bar(position="dodge", stat="identity")+theme(axis.text.x = element_text(angle = 90,vjust = 0.5, hjust=0.5))+ggtitle("Gráfico para la Variable Tema")+theme(plot.title = element_text(hjust = 0.5))
 
 ```
-En la anterior gráfica de barras se puede evidenciar que las publicaciones que están asociadas a política nacional son las que reciben más comentarios en general y comentarios peyorativo, luego le siguen las publicaciones relacionadas con otro tipo de temas, además resalta que las publicaciones relacionadas con deporte son las que menos comentarios recibe y parece ser que los comentarios peyorativos que contiene son mínimos.
+En la anterior gráfica de barras se puede evidenciar que las publicaciones que están asociadas a política nacional son las que reciben más comentarios en general y comentarios peyorativos, le siguen las publicaciones relacionadas con otro tipo de temas, además resalta que las publicaciones relacionadas con deporte son las que menos comentarios reciben y parece ser que los comentarios peyorativos que contienen son mínimos.
 
