@@ -85,6 +85,24 @@ cat("Intervalo de confianza al 95% para mu: ",intervalo_mu)
 Luego con un nivel de confianza de 95%, el número total $\tau$ de comentarios peyorativos que hay en las 2290 publicaciones se encuentra entre 6703 comentarios y 9791 comentarios, y la cantidad media $\mu$ de comentarios peyorativos por publicación se encuentra entre 3 comentarios y 5 comentarios.
 
 
+Por último, se halla el B usando 88 conglomerados para comprobar si este mejoró.
+
+Primeramente, reemplazando los respectivos valores de la fórmula:
+
+$$n = \frac{n_0}{1 + \frac{n_0}{N}} = 88 = \frac{n_0}{1 + \frac{n_0}{153}} \Longrightarrow n_0 = \frac{13464}{65}$$
+Luego, despejando la fórmula siguiente:
+
+$$n_0 = \frac{z^2S_{con}^{2}}{B^2M^2}$$.
+
+se tiene que,
+
+$$B = \sqrt{\frac{z^2S_{con}^2}{n_0M^2}}$$
+Reemplazando los valores obtenidos se tiene que,
+
+$$B = \sqrt{\frac{1.96^2*5341.702}{\frac{13464}{65}*2290^2}}$$
+
+Luego, B = 0.0043464, y como podemos evidenciar esta disminuyó, lo que quiere decir que nuestro I.C es más preciso.
+
 
 
 
