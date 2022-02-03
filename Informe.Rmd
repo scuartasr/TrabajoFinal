@@ -493,4 +493,8 @@ $$B = \sqrt{\frac{1.96^2*5341.702}{\frac{13464}{65}*2290^2}}$$
 
 Luego, B = 0.0043464, y como podemos evidenciar esta disminuyó, lo que quiere decir que nuestro I.C es más preciso.
 
+## Conclusiones
 
+Nuestra motivación inicial al realizar este estudio era saber que tanto acoso puede haber en las redes sociales, el cual es muy común y a la vez muy poco cuantificado.
+Como vimos, tan solo en esta red social y en este perfil en particular, que pertenece a un medio de comunicación, obtenemos un numero total de comentarios peyorativos entre 6703 y 9791, los cuales son cientos de personas expresando sus opiniones de una forma no adecuada, ofendiendo comúnmente a las personas que pertenecen al medio de comunicación, a políticos o a otras personas que tienen puntos de vista diferentes a estos.
+También, al ver el valor promedio obtenido de comentarios peyorativos por publicación, que es entre 3 y 5, podemos decir que las personas tienden a expresarse de una forma peyorativa, a veces, sin importar de que contenido se les esté presentando.
