@@ -6,7 +6,10 @@ author:
   - Julián Alejandro Úsuga Ortiz
   - Deivid Zhang Figueroa
 date: "Febrero de 2022"
-output: pdf_document
+output:
+  pdf_document:
+    toc: true
+    toc_depth: 3
 ---
 
 ```{r setup, include=FALSE}
@@ -30,6 +33,17 @@ No obstante, uno de los grandes problemas asociados a las redes sociales es la p
 
 Es por ello que nos motivamos a estudiar la cantidad total de comentarios con adjetivos peyorativos, emojis o cualquier otra representación o símbolo que evidencien de forma explícita la intención de agredir a una persona, grupo de personas, empresa, región geográfica o institución pública o privada, entre otras, que ocurren en la sección de comentarios de las publicaciones de Instagram del medio de comunicación Noticias Uno de Colombia. Pero además, se va a estudiar el promedio de comentarios peyorativos por publicación. Adicionalmente, se va a estimar la proporción de comentarios agresivos con el objetivo de mejorar las estimaciones (que son aquellas que carecen de un nombre real o una foto con una persona en ella).
 
+# Objetivos
+
+## Objetivo general
+
+Realizar un trabajo de \textbf{muestreo estadístico} relacionado con la cantidad de comentarios agresivos, violentos, amenazantes o peyorativos que se presentan en las cajas de comentarios de las publicaciones de  \textit{Instagram} del perfil de  \textbf{Noticias Uno}.
+
+## Objetivos específicos
+
+* Estimar la cantidad media de comentarios agresivos, violentos, amenazantes o peyorativos en cada publicación de *Instagram* de ***Noticias Uno***.
+* Estimar el total de comentarios agresivos, violentos, amenazantes o peyorativos en \textit{todas} las publicación de *Instagram* de ***Noticias Uno***.
+
 # Parámetros a estimar
 
 -   **Total** de comentarios peyorativos en la sección de comentarios de las publicaciones de Instagram del medio de comunicación Noticias Uno de Colombia.
@@ -37,7 +51,7 @@ Es por ello que nos motivamos a estudiar la cantidad total de comentarios con ad
 
 # Aspectos importantes
 
--   **Elemento.** Se considera como elemento a cada uno de los comentarios en las publicaciones de Instagram realizadas por el medio de comunicación radial Noticias Uno de Colombia.
+-   **Elemento.** Se considera como elemento a cada una de las publicaciones de Instagram realizadas por el medio de comunicación radial Noticias Uno de Colombia.
 
 -   **Población.** La población está dada por la totalidad de comentarios realizados en las publicaciones de Instagram realizadas por el medio de comunicación radial Noticias Uno de Colombia.
 
@@ -110,27 +124,10 @@ datos = datos %>%
   rename(Encuestador = X.U.FEFF.Encuestador)
 ```
 
-### Evidencia fotográfica
-
-![Recolección de publicaciones con la herramienta DownAlbum.](evidencias/evidencia0.png)
-
-![Herramienta usada para poder recopilar los datos facilmente (Office Forms).](evidencias/evidenciaencuesta.png)
-
-![Marco muestral, donde cada publicación representa un conglomerado de comentarios.](evidencias/evidencia2.png)
-
-![Asignación de las publicaciones y conglomerados a muestrear y progreso de este.](evidencias/evidencia1.png)
-
-![Progreso y evidencia de muestreo realizado por cada uno de los integrantes.](evidencias/evidencia3.png)
-
-![Resultados del muestreo, extraidos a formato EXCEL usando Office Forms.](evidencias/evidenciaresultados.png)
 
 ## Estudio piloto
 
-`Bla, bla, bla`
-
-Como se manifestó previamente, en este estudio se están considerando $N = `r nrow(conglomerados)`$, cada uno de $M = `r ncol(conglomerados)`$ unidades básicas. Así, se tiene que el número de unidades elementales en la población, es decir, el número publicaciones total a considerar es $M_0 = NM = `r nrow(conglomerados)*ncol(conglomerados)`$, que como se nota, son cinco unidades elementales más de las que realmente fueron consideras, esto porque se aleatorizaron los conglomerados con cinco unidades elementales imaginarias extras para poder asegurar que todos tuvieran tamaño uno. Ahora bien, para este estudio piloto se están considerando $n = 20$ conglomerados diferentes, seleccionados de manera aleatoria con ayuda de $\textsf{R}$, obteniendo que los que deben ser considerados son los siguientes:
-
-`Insertar lista de conglomerados a estudiar (db conglomerados)`
+Como se manifestó previamente, en este estudio se están considerando $N = `r nrow(conglomerados)`$, cada uno de $M = `r ncol(conglomerados)`$ unidades básicas. Así, se tiene que el número de unidades elementales en la población, es decir, el número publicaciones total a considerar es $M_0 = NM = `r nrow(conglomerados)*ncol(conglomerados)`$, que como se nota, son cinco unidades elementales más de las que realmente fueron consideras, esto porque se aleatorizaron los conglomerados con cinco unidades elementales imaginarias extras para poder asegurar que todos tuvieran tamaño uno. Ahora bien, para este estudio piloto se están considerando $n = 20$ conglomerados diferentes, seleccionados de manera aleatoria con ayuda de $\textsf{R}$, obteniendo que los que deben ser considerados son los que se observan haciendo clic [aquí](https://docs.google.com/spreadsheets/d/1Vd5FR3kfLUzW8CMg2ygtccVM9HUEPftCsqzw3woLjEI/edit?usp=sharing).
 
 Con esto, se va a considerar a $\mu_c$ como la media de comentarios peyorativos por conglomerados, $\mu$ la media de comentarios peyorativos en toda la población, es decir, en todas las publicaciones de *Noticias Uno* consideradas hasta la fecha de corte y $\tau$ el total. Además, sea $y_{ij}$ el número de comentarios peyorativos registrados en la *i-ésimo* publicación del *j-ésimo* conglomerado. Se sabe que los parámetros anteriores pueden ser calculados como sigue:
 
@@ -337,31 +334,31 @@ hist(as.vector(t(data[,6])),breaks=30,main= "Histograma de comentarios peyorativ
 
 Sabemos que el numero que mas se repite es cero con una frecuencia de 841, Nuevamente se observa que los valores que puede alcanzar esta variable varía bastante y que aún sigue siendo más frecuente un número más pequeño de comentarios peyorativos, lo que cambia esta vez es que la frecuencia de estos comentarios es mucho menos en comparación con la frecuencia de comentarios totales.
 
-### Variable *anonimos*.
+<!-- ### Variable *anónimos*. -->
 
-```{=tex}
-\begin{table}[htb]
-\begin{tabular}{|cc|}
-\hline
-\multicolumn{2}{|c|}{Número de comentarios anonimos por publicación} \\ \hline
-\multicolumn{1}{|c|}{Minimo}                          & 0               \\ \hline
-\multicolumn{1}{|c|}{Primer Cuantil (Q1)}             & 0               \\ \hline
-\multicolumn{1}{|c|}{Mediana}                         & 0               \\ \hline
-\multicolumn{1}{|c|}{Tercer cuantil (Q3)}             & 0               \\ \hline
-\multicolumn{1}{|c|}{Máximo}                          & 102             \\ \hline
-\multicolumn{1}{|c|}{Moda}                            & 0               \\ \hline
-\end{tabular}
-\end{table}
-```
-```{r}
-#summary(data[,7])
-hist(as.vector(t(data[,7])),breaks= 6,main= "Histograma de comentarios anónimos",xlab="Número de comentarios anónimos por publicación",ylab="Frecuencia", col="orange",xlim=c(0,120))
+<!-- ```{=tex} -->
+<!-- \begin{table}[htb] -->
+<!-- \begin{tabular}{|cc|} -->
+<!-- \hline -->
+<!-- \multicolumn{2}{|c|}{Número de comentarios anonimos por publicación} \\ \hline -->
+<!-- \multicolumn{1}{|c|}{Minimo}                          & 0               \\ \hline -->
+<!-- \multicolumn{1}{|c|}{Primer Cuantil (Q1)}             & 0               \\ \hline -->
+<!-- \multicolumn{1}{|c|}{Mediana}                         & 0               \\ \hline -->
+<!-- \multicolumn{1}{|c|}{Tercer cuantil (Q3)}             & 0               \\ \hline -->
+<!-- \multicolumn{1}{|c|}{Máximo}                          & 102             \\ \hline -->
+<!-- \multicolumn{1}{|c|}{Moda}                            & 0               \\ \hline -->
+<!-- \end{tabular} -->
+<!-- \end{table} -->
+<!-- ``` -->
+<!-- ```{r} -->
+<!-- #summary(data[,7]) -->
+<!-- hist(as.vector(t(data[,7])),breaks= 6,main= "Histograma de comentarios anónimos",xlab="Número de comentarios anónimos por publicación",ylab="Frecuencia", col="orange",xlim=c(0,120)) -->
 
-```
+<!-- ``` -->
 
-Es evidente que el número de comentarios para esta variable se reduce en gran medida, y por lo que nos muestra los estadísticos de resumen parece ser que no suele haber comentarios realizados por cuentas anónimas.
+<!-- Es evidente que el número de comentarios para esta variable se reduce en gran medida, y por lo que nos muestra los estadísticos de resumen parece ser que no suele haber comentarios realizados por cuentas anónimas. -->
 
-### Variable *Tema*.
+### Variable *tema*.
 
 ```{r include = FALSE}
 #pol
@@ -404,13 +401,12 @@ En la anterior gráfica de barras se puede evidenciar que las publicaciones que 
 
 
 
-## 9B
+# Estimadores
 
 ```{r}
 datos = read_xlsx("Resultados.xlsx")
 ```
 
-# Se halla los estimadores
 Primeramente agrupamos por conglomerado y hallamos los parámetros de interés que son el total y la media.
 ```{r}
 datos_1 <- datos %>% group_by(Conglomerado) %>% summarise(n=n(), ti = sum(Peyorativos), mui = sum(Peyorativos)/n())
@@ -448,7 +444,7 @@ error_estandar_tau_c_est = sqrt(var_est_tau_c_est)
 error_estandar_tau_c_est # error estándar estimado
 ```
 
-El error estándar estimado de $\hat{\tau}_c = 776.964$.
+Así, sabiendo que $S^2_{con} = `r round(s_con, 2)`$, se tiene que el error estándar estimado es $e.e.[\hat{\tau}_c] = 776.964$.
 
 ```{r}
 # Para mu estimado
@@ -458,7 +454,7 @@ error_estandar_mu_est = sqrt(var_est_mu_con_est)
 error_estandar_mu_est
 ```
 
-El error estándar estimado de $\hat{\mu} = 0.3392856$.
+El error estándar estimado es $e.e.[\hat{\mu}] = 0.3392856$.
 
 ```{r}
 cuantil_z = qnorm(0.05,lower.tail = F)
@@ -475,16 +471,20 @@ cat("Intervalo de confianza al 90% para mu: ",intervalo_mu)
 Luego con un nivel de confianza de 90%, el número total $\tau$ de comentarios peyorativos que hay en las 2290 publicaciones se encuentra entre 6969 comentarios y 9524 comentarios, y la cantidad media $\mu$ de comentarios peyorativos por publicación se encuentra entre 3 comentarios y 4 comentarios.
 
 
-Por último, se halla el B usando 88 conglomerados para comprobar si este mejoró.
+Por último, se halla el límite en el error de estimación $B$ usando 87 conglomerados para comprobar si este mejoró.
 
 ```{r}
 cuantil_z*error_estandar_tau_c_est # B para total
 cuantil_z*error_estandar_mu_est # B para mu
 ```
+
 Como se puede ver ambos B aumentaron.
 
 ## Conclusiones
 
-Nuestra motivación inicial al realizar este estudio era saber que tanto acoso puede haber en las redes sociales, el cual es muy común y a la vez muy poco cuantificado.
-Como vimos, tan solo en esta red social y en este perfil en particular, que pertenece a un medio de comunicación, obtenemos un numero total de comentarios peyorativos entre 6703 y 9791, los cuales son cientos de personas expresando sus opiniones de una forma no adecuada, ofendiendo comúnmente a las personas que pertenecen al medio de comunicación, a políticos o a otras personas que tienen puntos de vista diferentes a estos.
-También, al ver el valor promedio obtenido de comentarios peyorativos por publicación, que es entre 3 y 5, podemos decir que las personas tienden a expresarse de una forma peyorativa, a veces, sin importar de que contenido se les esté presentando.
+- Nuestra motivación inicial al realizar este estudio era saber que tanto acoso puede haber en las redes sociales, el cual es muy común y a la vez muy poco cuantificado.
+- Como vimos, tan solo en esta red social y en este perfil en particular, que pertenece a un medio de comunicación, obtenemos un numero total de comentarios peyorativos entre 6703 y 9791, los cuales son cientos de personas expresando sus opiniones de una forma no adecuada, ofendiendo comúnmente a las personas que pertenecen al medio de comunicación, a políticos o a otras personas que tienen puntos de vista diferentes a estos.
+- También, al ver el valor promedio obtenido de comentarios peyorativos por publicación, que es entre 3 y 5, podemos decir que las personas tienden a expresarse de una forma peyorativa, a veces, sin importar de que contenido se les esté presentando.
+- Se puede observar que las varianzas son altas y los intervalos de confianza, sobre todo el del total, amplios, lo cual se debe a que, como se vio en los histogramas, hay una dispersión alta del número de comentarios peyorativos. Esto probablemente contribuyó al degradamiento, esto es, en el aumento en el límite en el error de estimación absoluto tanto del total como de la media.
+
+# Anexo. Evidencia fotográfica

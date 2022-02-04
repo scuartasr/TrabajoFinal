@@ -1,0 +1,24 @@
+---
+title: "Evidencia fotográfica"
+author: ""
+date: ""
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Evidencia fotográfica
+
+![Recolección de publicaciones con la herramienta DownAlbum.](evidencias/evidencia0.png)
+
+![Herramienta usada para poder recopilar los datos facilmente (Office Forms).](evidencias/evidenciaencuesta.png)
+
+![Marco muestral, donde cada publicación representa un conglomerado de comentarios.](evidencias/evidencia2.png)
+
+![Asignación de las publicaciones y conglomerados a muestrear y progreso de este.](evidencias/evidencia1.png)
+
+![Progreso y evidencia de muestreo realizado por cada uno de los integrantes.](evidencias/evidencia3.png)
+
+![Resultados del muestreo, extraidos a formato EXCEL usando Office Forms.](evidencias/evidenciaresultados.png)
